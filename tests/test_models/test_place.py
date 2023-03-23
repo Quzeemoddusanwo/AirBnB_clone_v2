@@ -1,92 +1,40 @@
 #!/usr/bin/python3
-""" """
-from tests.test_models.test_base_model import test_basemodel
+"""Module for test Place class"""
+import unittest
+import json
+import pep8
+import datetime
+
 from models.place import Place
-import os
+from models.base_model import BaseModel
 
 
-class test_Place(test_basemodel):
-    """ place tests class"""
+class TestPlace(unittest.TestCase):
+    """Test State class implementation"""
+    def test_doc_module(self):
+        """Module documentation"""
+        doc = Place.__doc__
+        self.assertGreater(len(doc), 1)
 
-    def __init__(self, *args, **kwargs):
-        """ init test class"""
-        super().__init__(*args, **kwargs)
-        self.name = "Place"
-        self.value = Place
+    def test_pep8_conformance_place(self):
+        """Test that models/place.py conforms to PEP8."""
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['models/place.py'])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
-    def test_city_id(self):
-        """ testing place city_id attr"""
-        new = self.value()
-        self.assertEqual(type(new.city_id), str if
-                         os.getenv('HBNB_TYPE_STORAGE') != 'db' else
-                         type(None))
+    def test_pep8_conformance_test_place(self):
+        """Test that tests/test_models/test_place.py conforms to PEP8."""
+        pep8style = pep8.StyleGuide(quiet=True)
+        res = pep8style.check_files(['tests/test_models/test_place.py'])
+        self.assertEqual(res.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
-    def test_user_id(self):
-        """ testing place user_id attr"""
-        new = self.value()
-        self.assertEqual(type(new.user_id), str if
-                         os.getenv('HBNB_TYPE_STORAGE') != 'db' else
-                         type(None))
+    def test_doc_constructor(self):
+        """Constructor documentation"""
+        doc = Place.__init__.__doc__
+        self.assertGreater(len(doc), 1)
 
-    def test_name(self):
-        """ testing place name attr"""
-        new = self.value()
-        self.assertEqual(type(new.name), str if
-                         os.getenv('HBNB_TYPE_STORAGE') != 'db' else
-                         type(None))
 
-    def test_description(self):
-        """testing place description attr"""
-        new = self.value()
-        self.assertEqual(type(new.description), str if
-                         os.getenv('HBNB_TYPE_STORAGE') != 'db' else
-                         type(None))
-
-    def test_number_rooms(self):
-        """ testing place number of rooms attr"""
-        new = self.value()
-        self.assertEqual(type(new.number_rooms), int if
-                         os.getenv('HBNB_TYPE_STORAGE') != 'db' else
-                         type(None))
-
-    def test_number_bathrooms(self):
-        """ testing place number of bathrooms attr"""
-        new = self.value()
-        self.assertEqual(type(new.number_bathrooms), int if
-                         os.getenv('HBNB_TYPE_STORAGE') != 'db' else
-                         type(None))
-
-    def test_max_guest(self):
-        """ testing place max_guest attr"""
-        new = self.value()
-        self.assertEqual(type(new.max_guest), int if
-                         os.getenv('HBNB_TYPE_STORAGE') != 'db' else
-                         type(None))
-
-    def test_price_by_night(self):
-        """ testing place price by night attr"""
-        new = self.value()
-        self.assertEqual(type(new.price_by_night), int if
-                         os.getenv('HBNB_TYPE_STORAGE') != 'db' else
-                         type(None))
-
-    def test_latitude(self):
-        """ testing place latitud attr"""
-        new = self.value()
-        self.assertEqual(type(new.latitude), float if
-                         os.getenv('HBNB_TYPE_STORAGE') != 'db' else
-                         type(None))
-
-    def test_longitude(self):
-        """ testing place longitude attr"""
-        new = self.value()
-        self.assertEqual(type(new.latitude), float if
-                         os.getenv('HBNB_TYPE_STORAGE') != 'db' else
-                         type(None))
-
-    def test_amenity_ids(self):
-        """ testing amenity ids"""
-        new = self.value()
-        self.assertEqual(type(new.amenity_ids), list if
-                         os.getenv('HBNB_TYPE_STORAGE') != 'db' else
-                         type(None))
+if __name__ == '__main__':
+    unittest.main()
