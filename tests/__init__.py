@@ -15,7 +15,7 @@ def clear_stream(stream: TextIO):
         stream.seek(0)
         stream.truncate(0)
 
-
+        
 def delete_file(file_path: str):
     """Removes a file if it exists.
     Args:
@@ -24,7 +24,7 @@ def delete_file(file_path: str):
     if os.path.isfile(file_path):
         os.unlink(file_path)
 
-
+        
 def reset_store(store: FileStorage, file_path='file.json'):
     """Resets the items in the given store.
     Args:
@@ -36,7 +36,7 @@ def reset_store(store: FileStorage, file_path='file.json'):
         if store is not None:
             store.reload()
 
-
+            
 def read_text_file(file_name):
     """Reads the contents of a given file.
     Args:
